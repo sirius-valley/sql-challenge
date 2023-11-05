@@ -1,6 +1,4 @@
-# Case Study #8 - Fresh Segments :diamond_shape_with_a_dot_inside:
-
-<img src="https://user-images.githubusercontent.com/98699089/158591829-696bd095-b249-4403-8467-0d867d4c6971.png" width="500">
+# Fresh Segments
 
 Clients share their customer lists with the Fresh Segments team who then aggregate interest metrics and generate a single dataset worth of metrics for further analysis.
 
@@ -61,58 +59,52 @@ This mapping table links the `interest_id` with their relevant interest informat
 
 ## Table of Contents
 
-[Introduction](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#introduction)
+1. Update the fresh_segments.interest_metrics table by modifying the month_year column to be a date data type with the start of the month
 
-[Case Study Questions](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#case-study-questions)
+2. What is count of records in the fresh_segments.interest_metrics for each month_year value sorted in chronological order (earliest to latest) with the null values appearing first?
 
-[Data Exploration and Cleansing](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#data-exploration-and-cleansing)
+3. What do you think we should do with these null values in the fresh_segments.interest_metrics?
 
-[1. Update the fresh_segments.interest_metrics table by modifying the month_year column to be a date data type with the start of the month](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#1-update-the-fresh_segmentsinterest_metrics-table-by-modifying-the-month_year-column-to-be-a-date-data-type-with-the-start-of-the-month)
+4. How many interest_id values exist in the fresh_segments.interest_metrics table but not in the fresh_segments.interest_map table? What about the other way around?
 
-[2. What is count of records in the fresh_segments.interest_metrics for each month_year value sorted in chronological order (earliest to latest) with the null values appearing first?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#2-what-is-count-of-records-in-the-fresh_segmentsinterest_metrics-for-each-month_year-value-sorted-in-chronological-order-earliest-to-latest-with-the-null-values-appearing-first)
+5. Summarise the id values in the fresh_segments.interest_map by its total record count in this table
 
-[3. What do you think we should do with these null values in the fresh_segments.interest_metrics?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#3-what-do-you-think-we-should-do-with-these-null-values-in-the-fresh_segmentsinterest_metrics)
+6. What sort of table join should we perform for our analysis and why?
 
-[4. How many interest_id values exist in the fresh_segments.interest_metrics table but not in the fresh_segments.interest_map table? What about the other way around?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#4-how-many-interest_id-values-exist-in-the-fresh_segmentsinterest_metrics-table-but-not-in-the-fresh_segmentsinterest_map-table-what-about-the-other-way-around)
+7. Are there any records in your joined table where the month_year value is before the created_at value from the fresh_segments.interest_map table? Do you think these values are valid and why?
 
-[5. Summarise the id values in the fresh_segments.interest_map by its total record count in this table](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#5-summarise-the-id-values-in-the-fresh_segmentsinterest_map-by-its-total-record-count-in-this-table)
+**Interest Analysis**
 
-[6. What sort of table join should we perform for our analysis and why? Check your logic by checking the rows where interest_id = 21246 in your joined output and include all columns from fresh_segments.interest_metrics and all columns from fresh_segments.interest_map except from the id column](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#6-what-sort-of-table-join-should-we-perform-for-our-analysis-and-why-check-your-logic-by-checking-the-rows-where-interest_id--21246-in-your-joined-output-and-include-all-columns-from-fresh_segmentsinterest_metrics-and-all-columns-from-fresh_segmentsinterest_map-except-from-the-id-column)
+1. Which interests have been present in all month_year dates in our dataset?
 
-[7. Are there any records in your joined table where the month_year value is before the created_at value from the fresh_segments.interest_map table? Do you think these values are valid and why?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#7-are-there-any-records-in-your-joined-table-where-the-month_year-value-is-before-the-created_at-value-from-the-fresh_segmentsinterest_map-table-do-you-think-these-values-are-valid-and-why)
+2. Using this same total_months measure - calculate the cumulative percentage of all records starting at 14 months - which total_months value passes the 90% cumulative percentage value?
 
-[Interest Analysis](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#interest-analysis)
+3. If we were to remove all interest_id values which are lower than the total_months value we found in the previous question - how many total data points would we be removing?
 
-[1. Which interests have been present in all month_year dates in our dataset?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#1-which-interests-have-been-present-in-all-month_year-dates-in-our-dataset)
+4. Does this decision make sense to remove these data points from a business perspective? Use an example where there are all 14 months present to a removed interest example for your arguments - think about what it means to have less months present from a segment perspective.
 
-[2. Using this same total_months measure - calculate the cumulative percentage of all records starting at 14 months - which total_months value passes the 90% cumulative percentage value?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#2-using-this-same-total_months-measure---calculate-the-cumulative-percentage-of-all-records-starting-at-14-months---which-total_months-value-passes-the-90-cumulative-percentage-value)
+5. After removing these interests - how many unique interests are there for each month?
 
-[3. If we were to remove all interest_id values which are lower than the total_months value we found in the previous question - how many total data points would we be removing?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#3-if-we-were-to-remove-all-interest_id-values-which-are-lower-than-the-total_months-value-we-found-in-the-previous-question---how-many-total-data-points-would-we-be-removing)
+**Segment Analysis**
 
-[4. Does this decision make sense to remove these data points from a business perspective? Use an example where there are all 14 months present to a removed interest example for your arguments - think about what it means to have less months present from a segment perspective.](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#4-does-this-decision-make-sense-to-remove-these-data-points-from-a-business-perspective-use-an-example-where-there-are-all-14-months-present-to-a-removed-interest-example-for-your-arguments---think-about-what-it-means-to-have-less-months-present-from-a-segment-perspective)
+1. Using our filtered dataset by removing the interests with less than 6 months worth of data, which are the top 10 and bottom 10 interests which have the largest composition values in any month_year? Only use the maximum composition value for each interest but you must keep the corresponding month_year
 
-[5. After removing these interests - how many unique interests are there for each month?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#5-after-removing-these-interests---how-many-unique-interests-are-there-for-each-month)
+2. Which 5 interests had the lowest average ranking value?
 
-[Segment Analysis](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#segment-analysis)
+3. Which 5 interests had the largest standard deviation in their percentile_ranking value?
 
-[1. Using our filtered dataset by removing the interests with less than 6 months worth of data, which are the top 10 and bottom 10 interests which have the largest composition values in any month_year? Only use the maximum composition value for each interest but you must keep the corresponding month_year](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#1-using-our-filtered-dataset-by-removing-the-interests-with-less-than-6-months-worth-of-data-which-are-the-top-10-and-bottom-10-interests-which-have-the-largest-composition-values-in-any-month_year-only-use-the-maximum-composition-value-for-each-interest-but-you-must-keep-the-corresponding-month_year)
+4. For the 5 interests found in the previous question - what was minimum and maximum percentile_ranking values for each interest and its corresponding year_month value? Can you describe what is happening for these 5 interests?
 
-[2. Which 5 interests had the lowest average ranking value?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#2-which-5-interests-had-the-lowest-average-ranking-value)
+5. How would you describe our customers in this segment based off their composition and ranking values? What sort of products or services should we show to these customers and what should we avoid?
 
-[3. Which 5 interests had the largest standard deviation in their percentile_ranking value?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#3-which-5-interests-had-the-largest-standard-deviation-in-their-percentile_ranking-value)
+**Index Analysis**
 
-[4. For the 5 interests found in the previous question - what was minimum and maximum percentile_ranking values for each interest and its corresponding year_month value? Can you describe what is happening for these 5 interests?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#4-for-the-5-interests-found-in-the-previous-question---what-was-minimum-and-maximum-percentile_ranking-values-for-each-interest-and-its-corresponding-year_month-value-can-you-describe-what-is-happening-for-these-5-interests)
+1. What is the top 10 interests by the average composition for each month?
 
-[5. How would you describe our customers in this segment based off their composition and ranking values? What sort of products or services should we show to these customers and what should we avoid?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#5-how-would-you-describe-our-customers-in-this-segment-based-off-their-composition-and-ranking-values-what-sort-of-products-or-services-should-we-show-to-these-customers-and-what-should-we-avoid)
+2. For all of these top 10 interests - which interest appears the most often?
 
-[Index Analysis](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#index-analysis)
+3. What is the average of the average composition for the top 10 interests for each month?
 
-[1. What is the top 10 interests by the average composition for each month?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#1-what-is-the-top-10-interests-by-the-average-composition-for-each-month)
+4. What is the 3 month rolling average of the max average composition value from September 2018 to August 2019 and include the previous top ranking interests in the same output shown below
 
-[2. For all of these top 10 interests - which interest appears the most often?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#2-for-all-of-these-top-10-interests---which-interest-appears-the-most-often)
-
-[3. What is the average of the average composition for the top 10 interests for each month?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#3-what-is-the-average-of-the-average-composition-for-the-top-10-interests-for-each-month)
-
-[4. What is the 3 month rolling average of the max average composition value from September 2018 to August 2019 and include the previous top ranking interests in the same output shown below](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#4-what-is-the-3-month-rolling-average-of-the-max-average-composition-value-from-september-2018-to-august-2019-and-include-the-previous-top-ranking-interests-in-the-same-output-shown-below)
-
-[5. Provide a possible reason why the max average composition might change from month to month? Could it signal something is not quite right with the overall business model for Fresh Segments?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%238%20-%20Fresh%20Segments/Solution.md#5-provide-a-possible-reason-why-the-max-average-composition-might-change-from-month-to-month-could-it-signal-something-is-not-quite-right-with-the-overall-business-model-for-fresh-segments)
+5. Provide a possible reason why the max average composition might change from month to month? Could it signal something is not quite right with the overall business model for Fresh Segments?

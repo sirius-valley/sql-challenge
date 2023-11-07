@@ -109,7 +109,7 @@ These tables are used only for the bonus question where we will use them to recr
 
 6. What is the average revenue for member transactions and non-member transactions?
 
-[Product Analysis
+**Product Analysis**
 
 1. What are the top 3 products by total revenue before discount?
 
